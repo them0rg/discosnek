@@ -9,10 +9,7 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.VoiceState;
-<<<<<<<<< Temporary merge branch 1
-=========
 import discord4j.core.object.entity.Member;
->>>>>>>>> Temporary merge branch 2
 import discord4j.voice.AudioProvider;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
