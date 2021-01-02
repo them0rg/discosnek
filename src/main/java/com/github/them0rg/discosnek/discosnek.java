@@ -24,7 +24,14 @@ interface Command {
 
 public class discosnek {
 
+    private static final Map<String, Command> commands = new HashMap<>();
+
     static {
+        final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+        playerManager.getConfiguration().setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
+        AudioSourceManagers.registerRemoteSources(playerManager);
+        final AudioPlayer player = playerManager.createPlayer();
+        AudioProvider provider = new LavaPlayerAudioProvider(player);
         commands.put("ping", event -> event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage("Pong!"))
                 .then());
@@ -39,49 +46,6 @@ public class discosnek {
                 .doOnNext(command -> playerManager.loadItem(command.get(1), scheduler))
                 .then());
     }
-    playerManager.getConfiguration().
-    final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
-    AudioSourceManagers.registerRemoteSources(playerManager);
-    final AudioPlayer player = playerManager.createPlayer();
-    AudioProvider provider = new LavaPlayerAudioProvider(player);
-
-    private static final Map<String, Command> commands = new HashMap<>();
-
-    setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
-
-    final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
-    playerManager.getConfiguration().
-    final AudioPlayer player = playerManager.createPlayer();
-    AudioSourceManagers.registerRemoteSources(playerManager);
-    final TrackScheduler scheduler = new TrackScheduler(player);
-    AudioProvider provider = new LavaPlayerAudioProvider(player);
-    commands.put("join",event ->Mono.justOrEmpty(event.getMember()))
-            .
-
-    setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
-            .
-
-    flatMap(Member.getVoiceState)
-            .
-
-    flatMap(VoiceState::getChannel) ->channel.join(spec.setProvider(provider)))
-            .
-
-    flatMap(channel);
-
-    then()
-    commands.put("play",event ->Mono.justOrEmpty(event.getMessage().
-
-    getContent()))
-            .
-
-    map(content ->Arrays.asList(content.split(" ")))
-            .
-
-    doOnNext(command ->playerManager.loadItem(command.get(1),scheduler))
-            .
-
-    then());
 
     public static void main(String[] args) {
         final GatewayDiscordClient client = DiscordClientBuilder.create(args[0]).build()
