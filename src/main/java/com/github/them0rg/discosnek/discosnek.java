@@ -24,6 +24,16 @@ interface Command {
 
 public class discosnek {
 
+    private static final Map<String, Command> commands = new HashMap<>();
+
+    final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+    playerManager.getConfiguration().
+    final AudioPlayer player = playerManager.createPlayer();
+    AudioSourceManagers.registerRemoteSources(playerManager);
+    AudioProvider provider = new LavaPlayerAudioProvider(player);
+
+    setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
+
     static {
         commands.put("ping", event -> event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage("Pong!"))
@@ -39,15 +49,6 @@ public class discosnek {
                 .doOnNext(command -> playerManager.loadItem(command.get(1), scheduler))
                 .then());
     }
-    playerManager.getConfiguration().
-    final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
-    AudioSourceManagers.registerRemoteSources(playerManager);
-    final AudioPlayer player = playerManager.createPlayer();
-    AudioProvider provider = new LavaPlayerAudioProvider(player);
-
-    private static final Map<String, Command> commands = new HashMap<>();
-
-    setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
 
     public static void main(String[] args) {
         final GatewayDiscordClient client = DiscordClientBuilder.create(args[0]).build()
