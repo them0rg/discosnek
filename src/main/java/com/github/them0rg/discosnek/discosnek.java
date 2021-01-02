@@ -26,15 +26,12 @@ public class discosnek {
 
     private static final Map<String, Command> commands = new HashMap<>();
 
-    final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
-    playerManager.getConfiguration().
-    final AudioPlayer player = playerManager.createPlayer();
-    AudioSourceManagers.registerRemoteSources(playerManager);
-    AudioProvider provider = new LavaPlayerAudioProvider(player);
-
-    setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
-
     static {
+        final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+        playerManager.getConfiguration().setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
+        final AudioPlayer player = playerManager.createPlayer();
+        AudioSourceManagers.registerRemoteSources(playerManager);
+        AudioProvider provider = new LavaPlayerAudioProvider(player);
         commands.put("ping", event -> event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage("Pong!"))
                 .then());
