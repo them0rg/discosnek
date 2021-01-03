@@ -32,8 +32,18 @@ public class discosnek {
         AudioSourceManagers.registerRemoteSources(playerManager);
         final AudioPlayer player = playerManager.createPlayer();
         AudioProvider provider = new LavaPlayerAudioProvider(player);
+
         commands.put("ping", event -> event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage("Pong!"))
+                .then());
+        commands.put("hey bert", event -> event.getMessage().getChannel()
+                .flatMap(channel -> channel.createMessage("go fuck yourself bitch"))
+                .then());
+        commands.put("hey", event -> event.getMessage().getChannel()
+                .flatMap(channel -> channel.createMessage("get out of here with your enthusiasm"))
+                .then());
+        commands.put("rude", event -> event.getMessage().getChannel()
+                .flatMap(channel -> channel.createMessage("your face is rude"))
                 .then());
         commands.put("join", event -> Mono.justOrEmpty(event.getMember())
                 .flatMap(Member::getVoiceState)
