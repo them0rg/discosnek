@@ -1,2 +1,2 @@
 # discosnek
-py discord bot
+java discord bot
