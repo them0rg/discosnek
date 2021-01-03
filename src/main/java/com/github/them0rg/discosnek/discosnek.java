@@ -27,12 +27,13 @@ public class discosnek {
     private static final Map<String, Command> commands = new HashMap<>();
 
     static {
+        //add commands here & final variables for audio playing MADNESSS
         final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
         playerManager.getConfiguration().setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
         AudioSourceManagers.registerRemoteSources(playerManager);
         final AudioPlayer player = playerManager.createPlayer();
         AudioProvider provider = new LavaPlayerAudioProvider(player);
-
+        //TODO - play is not responding, add debugging to Track Scheduler
         commands.put("ping", event -> event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage("Pong!"))
                 .then());
