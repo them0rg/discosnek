@@ -1,2 +1,2 @@
 # discosnek
-java discord bot
+Java bot using Discord4J & Lavaplayer libs
